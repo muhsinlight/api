@@ -1,64 +1,43 @@
 package com.restorant.api.Controller;
-
 import java.util.List;
-
-import com.restorant.api.Model.Sipariş;
-import com.restorant.api.Service.IRestaurantService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+import com.restorant.api.Model.Order;
+import com.restorant.api.Service.OrderService;
 import org.springframework.web.bind.annotation.*;
-
-
 @RestController
-@RequestMapping("/rest/api/res")
+@RequestMapping("/rest/api/res/")
 @CrossOrigin(origins = "http://localhost:5173")
 public class RestaurantController {
-
-    private final IRestaurantService restaurantService;
-
-    public RestaurantController(IRestaurantService restaurantService) {
-        this.restaurantService = restaurantService;
+    private final OrderService orderService;
+    public RestaurantController(OrderService orderService) {
+        this.orderService = orderService;
     }
-
-
-
-    @PostMapping("/save")
-    public Sipariş saveSiparis(@RequestBody Sipariş siparis) {
-        return restaurantService.saveSiparis(siparis);
+    @PostMapping("save")
+    public Order  saveSiparis(@RequestBody Order order) {
+        return orderService.saveOrder(order);
     }
-
-
-    @GetMapping("/list")
-    public List<Sipariş> getAllSiparis() {
-        return restaurantService.getAllSiparis();
+    @GetMapping("list")
+    public List<Order > getAllOrders() {
+        return orderService.getAllOrders();
     }
-
-
-   @GetMapping("/list/{id}")
-    public Sipariş getSiparisById(@PathVariable Integer id) {
-        return restaurantService.getSiparisById(id);
+   @GetMapping("list/{id}")
+    public Order  getOrderById(@PathVariable Long id) {
+        return orderService.getOrderById(id);
     }
-
-
-    @DeleteMapping("/delete/{id}")
-    public void deleteSiparis(@PathVariable Integer id) {
-        restaurantService.deleteSiparis(id);
+    @DeleteMapping("delete/{id}")
+    public void deleteOrder(@PathVariable Long id) {
+        orderService.deleteOrder(id);
     }
-
-
-    @PutMapping("/update/{id}")
-    public Sipariş updateSiparis(@PathVariable Integer id, @RequestBody Sipariş updatesiparis) {
-        return restaurantService.updateSiparis(id, updatesiparis);
+    @PutMapping("update/{id}")
+    public Order updateOrder (@PathVariable Long id, @RequestBody Order updateOrder) {
+        return orderService.updateOrder(id,updateOrder);
     }
-    @GetMapping("/masaNo/{masaNo}")
-    public Sipariş findByMasaNo(@PathVariable Integer masaNo) {
-        return restaurantService.findByMasaNo(masaNo)
+    @GetMapping("tableNo/{tableNo}")
+    public Order findByTableNo(@PathVariable Integer tableNo) {
+        return orderService.findByTableNo(tableNo)
                 .orElseThrow(() -> new RuntimeException("Sipariş bulunamadı!"));
     }
-
-    @GetMapping("/garsonı/{garsonisim}")
-    public Sipariş findByGarsonIsim(@PathVariable String garsonisim) {
-        return restaurantService.findByGarsonIsim(garsonisim).orElseThrow(() -> new RuntimeException("Böyle bir garson yok "));
+    @GetMapping("garsonı/{garsonisim}")
+    public Order findByWaiterName(@PathVariable String waiterName) {
+        return orderService.findByWaiterName(waiterName).orElseThrow(() -> new RuntimeException("Böyle bir garson yok "));
     }
-
 }

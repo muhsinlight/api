@@ -1,15 +1,11 @@
 package com.restorant.api.Service;
-
 import com.restorant.api.Model.User;
 import com.restorant.api.Repository.UserRepository;
-import com.restorant.api.response.AuthenticationResponse;
+import com.restorant.api.Response.AuthenticationResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-
 @Service
 public class AuthenticationService {
     private final UserRepository userRepository;
