@@ -28,7 +28,8 @@ public class Order {
     @JoinColumn(name = "order_id") // "foods" tablosunda order_id sütunu olacak
     private List<Food> foods;
 
-    public Order() {}
+    public Order() {
+    }
 
     public Order(Long id, String waiterName, Date orderTime, int tableNo, List<Food> foods) {
         this.id = id;
@@ -39,14 +40,43 @@ public class Order {
     }
 
     // Getter & Setter
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public String getWaiterName() { return waiterName; }
-    public void setWaiterName(String waiterName) { this.waiterName = waiterName; }
-    public int getTableNo() { return tableNo; }
-    public void setTableNo(int tableNo) { this.tableNo = tableNo; }
-    public Date getOrderTime() { return orderTime; }
-    public void setOrderTime(Date orderTime) { this.orderTime = orderTime; }
-    public List<Food> getFoods() { return foods; }
-    public void setFoods(List<Food> foods) { this.foods = foods; }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getWaiterName() {
+        return waiterName;
+    }
+
+    public void setWaiterName(String waiterName) {
+        this.waiterName = waiterName;
+    }
+
+    public int getTableNo() {
+        return tableNo;
+    }
+
+    public void setTableNo(int tableNo) {
+        this.tableNo = tableNo;
+    }
+
+    public Date getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public List<Food> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(List<Food> foods) {
+        this.foods = foods;
+    }
 }

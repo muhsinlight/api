@@ -9,18 +9,21 @@ import java.util.List;
 @Service
 public class FoodServiceImpl implements FoodService {
     private final FoodRepository foodRepository;
+
     public FoodServiceImpl(FoodRepository foodRepository) {
         this.foodRepository = foodRepository;
     }
+
     @Override
     public Food createFood(Food food) {
-       return foodRepository.save(food);
+        return foodRepository.save(food);
     }
 
     @Override
     public Food findById(Integer id) {
         return foodRepository.findById(id).orElse(null);
     }
+
     @Override
     public List<Food> getAllFoods() {
         return foodRepository.findAll();
@@ -29,12 +32,13 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public void deleteFoodById(Integer id) {
         Food dbFood = findById(id);
-        if (dbFood!= null) {
-         foodRepository.delete(dbFood);
+        if (dbFood != null) {
+            foodRepository.delete(dbFood);
         }
     }
+
     @Override
-    public Food updateFood(Integer id,Food food) {
+    public Food updateFood(Integer id, Food food) {
         Food dbFood = foodRepository.findById(food.getId()).orElse(null);
         if (dbFood != null) {
             dbFood.setName(food.getName());
@@ -43,10 +47,12 @@ public class FoodServiceImpl implements FoodService {
         }
         return null;
     }
+
     @Override
     public List<Food> findByName(String name) {
         return foodRepository.findByName(name);
     }
+
     @Override
     public List<Food> findByCategory(String category) {
         return foodRepository.findByCategory(category);
